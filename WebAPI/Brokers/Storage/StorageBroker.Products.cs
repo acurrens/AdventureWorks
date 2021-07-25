@@ -16,6 +16,7 @@ namespace WebAPI.Brokers.Storage
             using var connection = new SqlConnection(connectionString: configuration.GetConnectionString("default"));
             string query = "SELECT * FROM Production.Product";
             var products = await connection.QueryAsync<Product>(query);
+            logger.Information($"SelectAllProductsAsync(): {query} | {products.Count()}");
             return products;
         }
         public async ValueTask<Product> SelectProductByIdAsync(int productId)

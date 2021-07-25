@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Brokers.Logging;
 using WebAPI.Services.Products;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,14 +16,17 @@ namespace WebAPI.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductService productService;
-        public ProductsController(IProductService productService)
+        private readonly ILoggingBroker logger;
+        public ProductsController(IProductService productService, ILoggingBroker loggingBroker)
         {
             this.productService = productService;
+            this.logger = loggingBroker;
         }
         // GET: api/<ProductsController>
         [HttpGet]
         public async ValueTask<ActionResult<IEnumerable<Product>>> Get()
         {
+            logger.Information("Get() api/products");
             try
             {
                 var products = await productService.GetAllProductsAsync();
@@ -30,6 +34,7 @@ namespace WebAPI.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(ex);
                 return Problem(ex.Message + ex.StackTrace);
             }
            

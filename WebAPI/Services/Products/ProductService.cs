@@ -11,12 +11,12 @@ namespace WebAPI.Services.Products
     public class ProductService : IProductService
     {
         private readonly IStorageBroker storageBroker;
-        //private readonly ILoggingBroker loggingBroker;
+        private readonly ILoggingBroker loggingBroker;
         
-        public ProductService(IStorageBroker storage)//, ILoggingBroker logging)
+        public ProductService(IStorageBroker storage, ILoggingBroker logging)
         {
             this.storageBroker = storage;
-            //this.loggingBroker = logging;
+            this.loggingBroker = logging;
         }
 
         public ValueTask<Product> AddProductAsync(Product product)
@@ -26,6 +26,7 @@ namespace WebAPI.Services.Products
 
         public async ValueTask<IEnumerable<Product>> GetAllProductsAsync()
         {
+            loggingBroker.Information("GetAllProductsAsync()");
             return await storageBroker.SelectAllProductsAsync();
         }
 
