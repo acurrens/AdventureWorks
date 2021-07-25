@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using UI.Brokers.Logging;
 
 namespace UI
 {
@@ -18,7 +20,9 @@ namespace UI
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            builder.Services.AddScoped<ILogger,Logger<LoggingBroker>>();
+            builder.Services.AddScoped<ILoggingBroker,LoggingBroker>();
+            builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
             await builder.Build().RunAsync();
         }
     }

@@ -14,32 +14,32 @@ namespace UI.Brokers.Logging
             _logger = logger;
         }
 
-        public void LogCritical(Exception exception)
+        public void Critical(Exception exception)
         {
             _logger.LogCritical(exception, exception.Message);
         }
 
-        public void LogDebug(string message)
+        public void Debug(string message)
         {
             _logger.LogDebug(message);
         }
 
-        public void LogError(Exception exception)
+        public void Error(Exception exception)
         {
             _logger.LogError(exception, exception.Message);
         }
 
-        public void LogInformation(string message)
+        public void Information(string message)
         {
             _logger.LogInformation(message);
         }
 
-        public void LogTrace(string message)
+        public void Trace(string message)
         {
             _logger.LogTrace(message);
         }
 
-        public void LogWarning(string message)
+        public void Warning(string message)
         {
             _logger.LogWarning(message);
         }

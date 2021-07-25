@@ -7,12 +7,12 @@ namespace UI.Brokers.Logging
 {
     public interface ILoggingBroker
     {
-        void LogInformation(string message);
-        void LogTrace(string message);
-        void LogDebug(string message);
-        void LogWarning(string message);
-        void LogError(Exception exception);
-        void LogCritical(Exception exception);
+        void Information(string message);
+        void Trace(string message);
+        void Debug(string message);
+        void Warning(string message);
+        void Error(Exception exception);
+        void Critical(Exception exception);
 
     }
 }
