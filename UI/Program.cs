@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using UI.Brokers.Logging;
+using UI.Brokers.API;
+using UI.Services;
 
 namespace UI
 {
@@ -19,10 +21,15 @@ namespace UI
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.Configuration.GetValue<string>("ApiBaseURL")) });
+
             builder.Services.AddScoped<ILogger,Logger<LoggingBroker>>();
             builder.Services.AddScoped<ILoggingBroker,LoggingBroker>();
             builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+            builder.Services.AddScoped<IApiBroker,ApiBroker>();
+            builder.Services.AddTransient<IProductService,ProductService>();
+
             await builder.Build().RunAsync();
         }
     }

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UI.Brokers.API
+namespace UI.Services
 {
-    public partial interface IApiBroker
+    public interface IProductService
     {
-        ValueTask<IEnumerable<Product>> GetAllProductsAsync();
+        ValueTask<IEnumerable<Product>> GetAllProducts();
+
     }
 }

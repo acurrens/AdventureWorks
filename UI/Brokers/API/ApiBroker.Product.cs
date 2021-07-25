@@ -9,9 +9,9 @@ namespace UI.Brokers.API
     public partial class ApiBroker
     {
         private const string ReleativeUrl = "api/products";
-        public async ValueTask<Product> GetProductsAsync()
+        public async ValueTask<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await this.GetAsync<Product>(ReleativeUrl);
+            return await this.GetAsync<IEnumerable<Product>>(ReleativeUrl);
         }
     }
 }

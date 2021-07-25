@@ -3,15 +3,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Brokers.DateTime;
 
 namespace WebAPI.Brokers.Logging
 {
     public class LoggingBroker : ILoggingBroker
     {
         private readonly ILogger _logger;
-        public LoggingBroker(ILogger logger)
+        private readonly IDateTimeBroker _dateTimeBroker;
+        public LoggingBroker(ILogger logger, IDateTimeBroker dateTimeBroker)
         {
             _logger = logger;
+            _dateTimeBroker = dateTimeBroker;
         }
 
         public void Critical(Exception exception)
@@ -21,6 +24,7 @@ namespace WebAPI.Brokers.Logging
 
         public void Debug(string message)
         {
+            message = _dateTimeBroker.GetCurrentDateTimeString() + " | " + message;
             _logger.LogDebug(message);
         }
 
@@ -31,16 +35,19 @@ namespace WebAPI.Brokers.Logging
 
         public void Information(string message)
         {
+            message = _dateTimeBroker.GetCurrentDateTimeString() + " | " + message;
             _logger.LogInformation(message);
         }
 
         public void Trace(string message)
         {
+            message = _dateTimeBroker.GetCurrentDateTimeString() + " | " + message;
             _logger.LogTrace(message);
         }
 
         public void Warning(string message)
         {
+            message = _dateTimeBroker.GetCurrentDateTimeString() + " | " + message;
             _logger.LogWarning(message);
         }
     }

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Brokers.DateTime;
 using WebAPI.Brokers.Logging;
 using WebAPI.Brokers.Storage;
 using WebAPI.Services.Products;
@@ -29,7 +30,10 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(c => c.AddDefaultPolicy(options => options.AllowAnyMethod()
+                .AllowAnyHeader()
+                .WithOrigins("https://localhost:5001"))
+                );
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -38,6 +42,7 @@ namespace WebAPI
             services.AddScoped<IStorageBroker, StorageBroker>();
             services.AddScoped<ILogger, Logger<LoggingBroker>>();
             services.AddScoped<ILoggingBroker,LoggingBroker>();
+            services.AddScoped<IDateTimeBroker, DateTimeBroker>();
             services.AddTransient<IProductService, ProductService>();
 
         }
@@ -55,7 +60,7 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
