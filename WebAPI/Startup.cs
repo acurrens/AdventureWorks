@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Brokers.Logging;
+using WebAPI.Brokers.Storage;
+using WebAPI.Services.Products;
 
 namespace WebAPI
 {
@@ -26,12 +29,16 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddMvc().AddControllersAsServices();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" });
             });
+
+            services.AddScoped<IStorageBroker, StorageBroker>();
+            services.AddTransient<IProductService, ProductService>();
+            //services.AddTransient<ILoggingBroker,LoggingBroker>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

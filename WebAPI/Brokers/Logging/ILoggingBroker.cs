@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UI.Brokers.Logging
+namespace WebAPI.Brokers.Logging
 {
     public interface ILoggingBroker
     {
