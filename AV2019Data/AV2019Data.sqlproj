@@ -202,5 +202,6 @@
     <Build Include="XMLSchemaCollections\ProductDescriptionSchemaCollection.sql" />
     <Build Include="XMLSchemaCollections\StoreSurveySchemaCollection.sql" />
     <Build Include="ExtendedProperties.sql" />
+    <None Include="Queries.sql" />
   </ItemGroup>
 </Project>
