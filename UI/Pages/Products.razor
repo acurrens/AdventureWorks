@@ -1,24 +1,27 @@
 ﻿@page "/products"
 @using UI.Components
 
+<Container State=State>
+    <Content>
 
+    <h1>@products.Count</h1>
+    <table class="table table-responsive table-sm table-bordered">
+        <tr>
+            <th>ProductId</th>
+            <th>Name</th>
+            <th>Number</th>
+            <th>Make Flag</th>
+        </tr>
 
+        <Iterator Items=products>
+        <tr>
+            <td>@context.ProductID</td>
+            <td>@context.Name</td>
+            <td>@context.ProductNumber</td>
+            <td>@context.MakeFlag</td>
+        </tr>
+        </Iterator>
 
-<h1>@products.Count</h1>
-<table class="table table-responsive table-sm table-bordered">
-    <tr>
-        <th>ProductId</th>
-        <th>Name</th>
-        <th>Number</th>
-        <th>Make Flag</th>
-    </tr>
-<Virtualize Items=products>
-    <tr>
-        <td>@context.ProductID</td>
-        <td>@context.Name</td>
-        <td>@context.ProductNumber</td>
-        <td>@context.MakeFlag</td>
-    </tr>
-</Virtualize>
-
-</table>
+    </table>
+    </Content>
+</Container>
