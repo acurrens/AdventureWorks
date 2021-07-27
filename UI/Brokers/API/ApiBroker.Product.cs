@@ -8,10 +8,10 @@ namespace UI.Brokers.API
 {
     public partial class ApiBroker
     {
-        private const string ReleativeUrl = "api/products";
+        private const string productsUrl = "api/products";
         public async ValueTask<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await this.GetAsync<IEnumerable<Product>>(ReleativeUrl);
+            return await this.GetAsync<IEnumerable<Product>>(productsUrl);
         }
     }
 }

@@ -44,6 +44,8 @@ namespace WebAPI
             services.AddScoped<ILoggingBroker,LoggingBroker>();
             services.AddScoped<IDateTimeBroker, DateTimeBroker>();
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IProductSubcategoryService, ProductSubcategoryService>();
+
 
         }
 

@@ -1,7 +1,8 @@
-﻿namespace WebAPI.Brokers.Storage
+﻿
+namespace WebAPI.Brokers.Storage
 {
     public partial interface IStorageBroker
     {
-
+        
     }
 }

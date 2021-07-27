@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using UI.Brokers.Logging;
 using UI.Brokers.API;
 using UI.Services;
+using UI.ViewModels;
 
 namespace UI
 {
@@ -29,6 +30,8 @@ namespace UI
             builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
             builder.Services.AddScoped<IApiBroker,ApiBroker>();
             builder.Services.AddTransient<IProductService,ProductService>();
+            builder.Services.AddTransient<IProductSubcategoryService, ProductSubcategoryService>();
+            builder.Services.AddTransient<IProductListView,ProductListView>();
 
             await builder.Build().RunAsync();
         }

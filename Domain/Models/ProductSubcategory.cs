@@ -10,7 +10,8 @@ namespace Domain.Models
     {
 		public int ProductSubcategoryID { get; set; }
 		public int ProductCategoryID { get; set; }
-		public Guid rowguid { get; set; }
+        public string Name { get; set; }
+        public Guid rowguid { get; set; }
 		public DateTime ModifiedDate { get; set; }
 
 		//public ProductSubcategory(int ProductSubcategoryID_, int ProductCategoryID_, Guid rowguid_, DateTime ModifiedDate_)

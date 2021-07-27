@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace WebAPI.Brokers.Storage
 {
-    public partial class StorageBroker
+    public partial class StorageBroker : IStorageBroker
     {
         public async ValueTask<IEnumerable<Product>> SelectAllProductsAsync()
         {
